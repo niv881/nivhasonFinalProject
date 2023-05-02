@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_weather"
+        android:icon="@drawable/baseline_cloud_24"
+        android:title="@string/weather" />
+
+    <item
+        android:id="@+id/navigation_restaurant"
+        android:icon="@drawable/baseline_restaurant_24"
+        android:title="@string/Restaurants" />
+
+    <item
+        android:id="@+id/navigation_parks"
+        android:icon="@drawable/baseline_park_24"
+        android:title="@string/Parks" />
+
+    <item
+        android:id="@+id/nav_parking"
+        android:icon="@drawable/baseline_local_parking_24"
+        android:title="@string/parking" />
+
+</menu>

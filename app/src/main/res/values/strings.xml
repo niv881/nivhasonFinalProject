@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">nivhasonFinalProject</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="nearby_restaurants">Nearby Restaurants</string>
+    <string name="nearby_parks">Nearby Parks</string>
+    <string name="parking">Parking</string>
+    <string name="restaurants">restaurants</string>
+    <string name="weather">weather</string>
+    <string name="nearby_parking">Nearby parking</string>
+    <string name="parks">parks</string>
+    <string name="Parks">Parks</string>
+    <string name="Restaurants">Restaurants</string>
+    <string name="price_level_1_5">Price Level 1-5</string>
+    <string name="rating">Rating ⭐ - ⭐⭐⭐⭐</string>
+    <string name="restaurantName">TextView</string>
+    <string name="image_of_restaurant">image Of restaurant</string>
+</resources>

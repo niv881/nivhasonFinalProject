@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_weather">
+
+    <fragment
+        android:id="@+id/navigation_weather"
+        android:name="dev.nhason.nivhasonfinalproject.ui.weather.WeatherFragment"
+        android:label="@string/weather"
+        tools:layout="@layout/fragment_weather" />
+
+    <fragment
+        android:id="@+id/navigation_restaurant"
+        android:name="dev.nhason.nivhasonfinalproject.ui.restaurant.RestaurantFragment"
+        android:label="@string/restaurants"
+        tools:layout="@layout/fragment_restaurant" >
+        <action
+            android:id="@+id/action_navigation_restaurant_to_restaurantDetailsFragment"
+            app:destination="@id/restaurantDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_restaurant_to_mainActivity2"
+            app:destination="@id/mainActivity2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_parks"
+        android:name="dev.nhason.nivhasonfinalproject.ui.parks.ParksFragment"
+        android:label="@string/parks"
+        tools:layout="@layout/fragment_parks" />
+    <fragment
+        android:id="@+id/nav_parking"
+        android:name="dev.nhason.nivhasonfinalproject.ui.parking.ParkingFragment"
+        android:label="fragment_parking"
+        tools:layout="@layout/fragment_parking" />
+    <fragment
+        android:id="@+id/restaurantDetailsFragment"
+        android:name="dev.nhason.nivhasonfinalproject.ui.restaurant.RestaurantDetailsFragment"
+        android:label="fragment_resturant_details"
+        tools:layout="@layout/fragment_resturant_details" />
+    <activity
+        android:id="@+id/mainActivity2"
+        android:name="dev.nhason.nivhasonfinalproject.MainActivity2"
+        android:label="activity_main2"
+        tools:layout="@layout/activity_main2" />
+</navigation>
