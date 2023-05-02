@@ -10,7 +10,7 @@ android {
     namespace 'dev.nhason.nivhasonfinalproject'
     compileSdk 33
 
-    def apiKeyFile = rootProject.file("apikey.properties")
+    def apiKeyFile = rootProject.file("apikeys.properties")
     def props = new Properties()
     props.load(new FileInputStream(apiKeyFile))
 

@@ -16,4 +16,6 @@
     <string name="rating">Rating ⭐ - ⭐⭐⭐⭐</string>
     <string name="restaurantName">TextView</string>
     <string name="image_of_restaurant">image Of restaurant</string>
+    <string name="weather_image">weather-image</string>
+    <string name="feels_like">Feels Like :</string>
 </resources>

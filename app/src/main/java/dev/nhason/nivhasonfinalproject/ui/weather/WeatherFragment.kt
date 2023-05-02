@@ -10,12 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import dev.nhason.nivhasonfinalproject.databinding.FragmentWeatherBinding
-
+const val c = "°C"
 class WeatherFragment : Fragment() {
 
     private var _binding: FragmentWeatherBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,10 +27,11 @@ class WeatherFragment : Fragment() {
         _binding = FragmentWeatherBinding.inflate(inflater, container, false)
         val root: View = binding.root
         weatherViewModel.locationLiveData.observe(viewLifecycleOwner){
-
-            binding.textView3.text = it.main.temp.toString()
-            binding.textView2.text = it.name
-
+            binding.titleCity.text = it.name
+            Picasso.get().load(it.weather[0].iconUrl).into(binding.weatherImage)
+            binding.temp.text = "${it.main.temp.toInt()}$c"
+            binding.feelsLikeDetails.text = it.main.feelsLike.toInt().toString()
+            binding.description.text = it.weather[0].description
         }
 
         return root
@@ -49,3 +49,4 @@ class WeatherFragment : Fragment() {
 
 
 }
+
