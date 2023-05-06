@@ -5,9 +5,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
@@ -20,10 +22,12 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dev.nhason.nivhasonfinalproject.data.models.isFirstTime
+import dev.nhason.nivhasonfinalproject.data.models.saveFirstTime
 import dev.nhason.nivhasonfinalproject.databinding.ActivityMainBinding
+import dev.nhason.nivhasonfinalproject.databinding.TermsDialogBinding
 import dev.nhason.nivhasonfinalproject.ui.restaurant.PlacesViewModel
 import dev.nhason.nivhasonfinalproject.ui.weather.WeatherViewModel
-
 import java.util.*
 
 
@@ -35,17 +39,18 @@ class MainActivity: AppCompatActivity() {
     private val cts = CancellationTokenSource()
     private val permissionId = 2
     lateinit var weatherViewModel: WeatherViewModel
-    lateinit var restaurantViewModel: PlacesViewModel
+    lateinit var placesViewModel: PlacesViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
-        restaurantViewModel = ViewModelProvider(this)[PlacesViewModel::class.java]
+        placesViewModel = ViewModelProvider(this)[PlacesViewModel::class.java]
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        terms()
         val navView: BottomNavigationView = binding.navView
         navigationController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navigationController)
@@ -59,38 +64,55 @@ class MainActivity: AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        showUserLocation()
+        getLocation()
     }
 
-    @SuppressLint("MissingPermission")
-    fun showUserLocation() {
-        if (hasLocationPermission()) {
-            if (isLocationEnabled()){
+    private fun terms(){
+        if (isFirstTime){
+            showTerms()
+            saveFirstTime(false)
+        }
+    }
+
+    private fun showTerms(){
+        val dialogBinding = TermsDialogBinding.inflate(layoutInflater,binding.root,false)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(dialogBinding.root)
+            .setCancelable(false)
+            .show()
+
+        dialogBinding.editUsername.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.termsfeed.com/live/3f134c1c-a45b-48b2-ac2a-e2399f940cf4"))
+            startActivity(browserIntent)
+        }
+
+        dialogBinding.buttonDone.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
+
+    @SuppressLint("MissingPermission", "SetTextI18n")
+    private fun getLocation() {
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
                 val request = CurrentLocationRequest.Builder()
                     .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
                     .build()
-                client.getCurrentLocation( request , cts.token).addOnSuccessListener {
-                   val latLng = "${it.latitude},${it.longitude}"
-                    weatherViewModel.getWeather(it.latitude,it.longitude)
-                    restaurantViewModel.getRestaurant(latLng)
+                client.getCurrentLocation(request, cts.token).addOnSuccessListener {
+                    val latLng = "${it.latitude},${it.longitude}"
+                    weatherViewModel.getWeather(it.latitude, it.longitude)
+                    placesViewModel.getRestaurant(latLng)
                 }
-            }else {
-                Toast.makeText(this, "Please turn on location", Toast.LENGTH_LONG).show()
-                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                startActivity(intent)
+            } else {
+            Toast.makeText(this, "Please turn on location", Toast.LENGTH_LONG).show()
+            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            startActivity(intent)
         }
-        }else{
-            requestPermissions()
-        }
+    } else {
+        requestPermissions()
     }
-
-    private fun hasLocationPermission(): Boolean =
-        this.checkSelfPermission(
-            Manifest.permission.ACCESS_COARSE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED &&
-                this.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
-                PackageManager.PERMISSION_GRANTED
-
+    }
 
     private fun isLocationEnabled(): Boolean {
         val locationManager: LocationManager =
@@ -98,6 +120,21 @@ class MainActivity: AppCompatActivity() {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER
         )
+    }
+
+    private fun checkPermissions(): Boolean {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            return true
+        }
+        return false
     }
 
     private fun requestPermissions() {
@@ -109,6 +146,19 @@ class MainActivity: AppCompatActivity() {
             ),
             permissionId
         )
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == permissionId) {
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                getLocation()
+            }
+        }
     }
 
 }

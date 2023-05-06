@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_g_api_item"
+    tools:context=".ui.place_details.PlaceDetailsFragment">
+
+    <ImageView
+        android:id="@+id/imageRestaurant"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/image_of_restaurant"
+        android:maxWidth="350dp"
+        android:maxHeight="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/nameOfRestaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/restaurantName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageRestaurant" />
+
+    <TextView
+        android:id="@+id/ratingD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-smallcaps"
+        app:layout_constraintEnd_toEndOf="@+id/rating"
+        app:layout_constraintStart_toStartOf="@+id/rating"
+        app:layout_constraintTop_toBottomOf="@+id/rating"
+        tools:text="TextView" />
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/rating"
+        app:layout_constraintBottom_toTopOf="@+id/streetName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameOfRestaurant" />
+
+    <ImageButton
+        android:id="@+id/iconGoogleMaps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon_google_maps"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/googleg_standard_color_18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/wazeClick"
+        app:layout_constraintTop_toBottomOf="@+id/streetName" />
+
+    <TextView
+        android:id="@+id/googleMaps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/view_in_google_maps"
+        app:layout_constraintEnd_toEndOf="@+id/iconGoogleMaps"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/iconGoogleMaps"
+        app:layout_constraintTop_toBottomOf="@+id/iconGoogleMaps" />
+
+    <TextView
+        android:id="@+id/WazeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/view_in_waze"
+        app:layout_constraintEnd_toEndOf="@+id/wazeClick"
+        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintStart_toStartOf="@+id/wazeClick"
+        app:layout_constraintTop_toBottomOf="@+id/wazeClick" />
+
+    <ImageButton
+        android:id="@+id/wazeClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon_google_maps"
+        android:minHeight="48dp"
+        android:src="@drawable/baseline_fmd_good_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/iconGoogleMaps"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/streetName" />
+
+    <TextView
+        android:id="@+id/streetName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageRestaurant"
+        tools:text="TextView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

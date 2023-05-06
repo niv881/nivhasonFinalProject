@@ -1,21 +1,22 @@
 package dev.nhason.nivhasonfinalproject.ui.weather
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
-import dagger.hilt.android.AndroidEntryPoint
 import dev.nhason.nivhasonfinalproject.databinding.FragmentWeatherBinding
+
 const val c = "°C"
 class WeatherFragment : Fragment() {
 
     private var _binding: FragmentWeatherBinding? = null
     private val binding get() = _binding!!
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -18,4 +18,8 @@
     <string name="image_of_restaurant">image Of restaurant</string>
     <string name="weather_image">weather-image</string>
     <string name="feels_like">Feels Like :</string>
+    <string name="placesimage">placesImage</string>
+    <string name="icon_google_maps">icon_google_maps</string>
+    <string name="view_in_google_maps">view in google maps</string>
+    <string name="view_in_waze">View in Waze</string>
 </resources>

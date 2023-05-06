@@ -1,5 +1,6 @@
 package dev.nhason.nivhasonfinalproject.services
 
+import dev.nhason.nivhasonfinalproject.data.models.placeIdModel.placeIdRespone
 import dev.nhason.nivhasonfinalproject.data.models.placesModel.placesRespone
 import dev.nhason.nivhasonfinalproject.data.models.weatherModel.WeatherRespone
 import dev.nhason.nivhasonfinalproject.utils.TokenInterceptor
@@ -15,11 +16,16 @@ interface Services {
    suspend fun getWeather(@Query("lat") lat: Double,
                           @Query("lon") lon: Double) : WeatherRespone
 
+
     @GET("maps/api/place/nearbysearch/json?radius=1500&type=restaurant")
     suspend fun getRestaurant(
         @Query("location") location: String
-    )
-            : placesRespone
+    ): placesRespone
+
+    @GET("maps/api/place/details/json")
+    suspend fun getRestaurantDetails(
+        @Query("place_id") placeId: String
+    ): placeIdRespone
 
     @GET("maps/api/place/nearbysearch/json?radius=1500&type=park")
     suspend fun getParks(

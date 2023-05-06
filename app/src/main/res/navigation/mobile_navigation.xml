@@ -17,31 +17,31 @@
         android:label="@string/restaurants"
         tools:layout="@layout/fragment_restaurant" >
         <action
-            android:id="@+id/action_navigation_restaurant_to_restaurantDetailsFragment"
-            app:destination="@id/restaurantDetailsFragment" />
-        <action
-            android:id="@+id/action_navigation_restaurant_to_mainActivity2"
-            app:destination="@id/mainActivity2" />
+            android:id="@+id/action_navigation_restaurant_to_placeDetailsFragment"
+            app:destination="@id/placeDetailsFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_parks"
         android:name="dev.nhason.nivhasonfinalproject.ui.parks.ParksFragment"
         android:label="@string/parks"
-        tools:layout="@layout/fragment_parks" />
+        tools:layout="@layout/fragment_parks" >
+        <action
+            android:id="@+id/action_navigation_parks_to_placeDetailsFragment"
+            app:destination="@id/placeDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_parking"
         android:name="dev.nhason.nivhasonfinalproject.ui.parking.ParkingFragment"
         android:label="fragment_parking"
-        tools:layout="@layout/fragment_parking" />
+        tools:layout="@layout/fragment_parking" >
+        <action
+            android:id="@+id/action_nav_parking_to_placeDetailsFragment"
+            app:destination="@id/placeDetailsFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/restaurantDetailsFragment"
-        android:name="dev.nhason.nivhasonfinalproject.ui.restaurant.RestaurantDetailsFragment"
-        android:label="fragment_resturant_details"
-        tools:layout="@layout/fragment_resturant_details" />
-    <activity
-        android:id="@+id/mainActivity2"
-        android:name="dev.nhason.nivhasonfinalproject.MainActivity2"
-        android:label="activity_main2"
-        tools:layout="@layout/activity_main2" />
+        android:id="@+id/placeDetailsFragment"
+        android:name="dev.nhason.nivhasonfinalproject.ui.place_details.PlaceDetailsFragment"
+        android:label="fragment_place_details"
+        tools:layout="@layout/fragment_place_details" />
 </navigation>

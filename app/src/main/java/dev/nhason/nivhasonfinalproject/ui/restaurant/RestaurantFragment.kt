@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
@@ -30,27 +31,21 @@ class RestaurantFragment : Fragment() {
         _binding = FragmentRestaurantBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        restaurantViewModel.locationLiveData.observe(viewLifecycleOwner) {
+        restaurantViewModel.restaurantLiveData.observe(viewLifecycleOwner) {
             val adapter = GApiAdapter(it) { places ->
-                val bundle = Bundle()
-                if (places != null ) {
-                    bundle.putParcelable("n", places)
-                    findNavController().navigate(
-                        R.id.action_navigation_restaurant_to_restaurantDetailsFragment,
-                        bundle
-                    )
-                }else {
-
-                    Toast.makeText(requireContext(), "no View for This Place", Toast.LENGTH_SHORT)
-                        .show()
-                }
+                restaurantViewModel.getRestaurantDetails(places)
+                findNavController().navigate(
+                    R.id.action_navigation_restaurant_to_placeDetailsFragment)
             }
-
             binding.gApiRecycler.adapter = adapter
             binding.gApiRecycler.layoutManager = LinearLayoutManager(
                 context,
                 VERTICAL,
                 false)
+
+            if (it.isEmpty()){
+                binding.titlePlaces.text = "No restaurant in this area..."
+            }
         }
         return root
     }

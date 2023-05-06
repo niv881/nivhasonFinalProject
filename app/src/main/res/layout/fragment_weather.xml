@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:context=".ui.weather.WeatherFragment"
-    android:background="@drawable/background_weather">
+    android:background="@drawable/background_g_api_item">
 
 
     <TextView
