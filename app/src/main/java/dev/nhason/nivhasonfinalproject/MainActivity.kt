@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.location.CurrentLocationRequest
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -51,9 +52,9 @@ class MainActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         terms()
-        val navView: BottomNavigationView = binding.navView
+
         navigationController = findNavController(R.id.nav_host_fragment_activity_main)
-        navView.setupWithNavController(navigationController)
+        NavigationUI.setupWithNavController(binding.navView,navigationController,false)
         client = LocationServices.getFusedLocationProviderClient(this)
     }
 

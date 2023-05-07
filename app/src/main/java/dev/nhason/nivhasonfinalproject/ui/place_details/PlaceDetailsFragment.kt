@@ -9,7 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Picasso
+import dev.nhason.nivhasonfinalproject.R
 import dev.nhason.nivhasonfinalproject.databinding.FragmentPlaceDetailsBinding
 import dev.nhason.nivhasonfinalproject.ui.restaurant.PlacesViewModel
 
@@ -27,27 +33,29 @@ class PlaceDetailsFragment : Fragment() {
         restaurantDetailsViewModel =
             ViewModelProvider(requireActivity()).get(PlacesViewModel::class.java)
 
+
         _binding = FragmentPlaceDetailsBinding.inflate(inflater,container,false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        restaurantDetailsViewModel.restaurantDetailsLiveData.observe(viewLifecycleOwner){place ->
-            binding.nameOfRestaurant.text=place.result.name
+        restaurantDetailsViewModel.restaurantDetailsLiveData.observe(viewLifecycleOwner) { place ->
+            binding.nameOfRestaurant.text = place.result.name
             Picasso.get().load(place.result.photo)
                 .into(binding.imageRestaurant)
             binding.ratingD.text = place.result.ratingDetails
             binding.streetName.text = place.result.vicinity
 
-            binding.iconGoogleMaps.setOnClickListener{
+            binding.iconGoogleMaps.setOnClickListener {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(place.result.url))
                 startActivity(browserIntent)
             }
-            binding.wazeClick.setOnClickListener{
+            binding.wazeClick.setOnClickListener {
                 try {
-                    val url = "https://www.waze.com/ul?ll=${place.result.geometry.location.lat}%2C" +
-                            "${place.result.geometry.location.lng}&navigate=yes&zoom=17"
+                    val url =
+                        "https://www.waze.com/ul?ll=${place.result.geometry.location.lat}%2C" +
+                                "${place.result.geometry.location.lng}&navigate=yes&zoom=17"
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                     startActivity(intent)
                 } catch (ex: ActivityNotFoundException) {
@@ -55,13 +63,11 @@ class PlaceDetailsFragment : Fragment() {
                         Intent(Intent.ACTION_VIEW, Uri.parse(MARKET_FOR_WAZE))
                     startActivity(intent)
                 }
-
-
             }
-
         }
-
+        
     }
+
 
 
     override fun onDestroyView() {
