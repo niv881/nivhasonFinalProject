@@ -16,4 +16,4 @@ fun Context.saveFirstTime(boolean: Boolean){
 val Context.isFirstTime: Boolean
     get() =
         getSharedPreferences(FILE_NAME, MODE_PRIVATE)
-            .getBoolean(FILE_NAME_FIRST_TIME, true)
+            .getBoolean(FILE_NAME_FIRST_TIME,false)

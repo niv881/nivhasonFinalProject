@@ -16,13 +16,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.gms.location.CurrentLocationRequest
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dev.nhason.nivhasonfinalproject.data.models.isFirstTime
 import dev.nhason.nivhasonfinalproject.data.models.saveFirstTime
 import dev.nhason.nivhasonfinalproject.databinding.ActivityMainBinding
@@ -52,7 +50,6 @@ class MainActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         terms()
-
         navigationController = findNavController(R.id.nav_host_fragment_activity_main)
         NavigationUI.setupWithNavController(binding.navView,navigationController,false)
         client = LocationServices.getFusedLocationProviderClient(this)
@@ -69,9 +66,9 @@ class MainActivity: AppCompatActivity() {
     }
 
     private fun terms(){
-        if (isFirstTime){
+        if (!isFirstTime){
             showTerms()
-            saveFirstTime(false)
+            saveFirstTime(true)
         }
     }
 
