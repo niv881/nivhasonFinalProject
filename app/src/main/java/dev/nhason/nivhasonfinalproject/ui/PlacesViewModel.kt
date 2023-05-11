@@ -1,4 +1,4 @@
-package dev.nhason.nivhasonfinalproject.ui.restaurant
+package dev.nhason.nivhasonfinalproject.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 const val baseURL = BuildConfig.BASE_URL_GOOGLE
 const val queryParam = BuildConfig.QUERY_PROPS_GOOGLE
-const val queryValue = BuildConfig.KEY_GOOGLE
+const val queryValue = "AIza...."
 
 
 class PlacesViewModel  : ViewModel() {

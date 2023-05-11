@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dev.nhason.nivhasonfinalproject.R
 import dev.nhason.nivhasonfinalproject.adapter.GApiAdapter
 import dev.nhason.nivhasonfinalproject.databinding.FragmentParkingBinding
-import dev.nhason.nivhasonfinalproject.ui.restaurant.PlacesViewModel
+import dev.nhason.nivhasonfinalproject.ui.PlacesViewModel
 
 class ParkingFragment : Fragment() {
 

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import dev.nhason.nivhasonfinalproject.R
 import dev.nhason.nivhasonfinalproject.adapter.GApiAdapter
 import dev.nhason.nivhasonfinalproject.databinding.FragmentRestaurantBinding
+import dev.nhason.nivhasonfinalproject.ui.PlacesViewModel
 
 class RestaurantFragment : Fragment() {
 

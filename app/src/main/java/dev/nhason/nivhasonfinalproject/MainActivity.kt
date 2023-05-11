@@ -25,7 +25,7 @@ import dev.nhason.nivhasonfinalproject.data.models.isFirstTime
 import dev.nhason.nivhasonfinalproject.data.models.saveFirstTime
 import dev.nhason.nivhasonfinalproject.databinding.ActivityMainBinding
 import dev.nhason.nivhasonfinalproject.databinding.TermsDialogBinding
-import dev.nhason.nivhasonfinalproject.ui.restaurant.PlacesViewModel
+import dev.nhason.nivhasonfinalproject.ui.PlacesViewModel
 import dev.nhason.nivhasonfinalproject.ui.weather.WeatherViewModel
 import java.util.*
 

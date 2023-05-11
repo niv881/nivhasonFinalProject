@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dev.nhason.nivhasonfinalproject.R
 import dev.nhason.nivhasonfinalproject.adapter.GApiAdapter
 import dev.nhason.nivhasonfinalproject.databinding.FragmentParksBinding
-import dev.nhason.nivhasonfinalproject.ui.restaurant.PlacesViewModel
+import dev.nhason.nivhasonfinalproject.ui.PlacesViewModel
+
 
 class ParksFragment : Fragment() {
 
@@ -24,6 +25,7 @@ class ParksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val parksViewModel =
+
             ViewModelProvider(requireActivity()).get(PlacesViewModel::class.java)
 
         _binding = FragmentParksBinding.inflate(inflater, container, false)
