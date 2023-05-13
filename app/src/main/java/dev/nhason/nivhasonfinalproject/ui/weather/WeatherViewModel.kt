@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 const val baseURL = BuildConfig.BASE_URL_OPEN_WEATHER
 const val queryParam = BuildConfig.QUERY_PROPS_WEATHER
-const val queryValue = "cf3759390ef569295a04178246118e43"
+const val queryValue = "Key from Open Weather"
 
 class WeatherViewModel(application : Application) : AndroidViewModel(application) {
 
