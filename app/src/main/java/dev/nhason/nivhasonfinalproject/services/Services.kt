@@ -2,7 +2,7 @@ package dev.nhason.nivhasonfinalproject.services
 
 import dev.nhason.nivhasonfinalproject.data.models.placeIdModel.placeIdRespone
 import dev.nhason.nivhasonfinalproject.data.models.placesModel.placesRespone
-import dev.nhason.nivhasonfinalproject.data.models.weatherModel.WeatherRespone
+import dev.nhason.nivhasonfinalproject.data.models.weatherModel.WeatherResponse
 import dev.nhason.nivhasonfinalproject.utils.TokenInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -14,7 +14,7 @@ import retrofit2.http.Query
 interface Services {
     @GET("data/2.5/weather?units=metric")
    suspend fun getWeather(@Query("lat") lat: Double,
-                          @Query("lon") lon: Double) : WeatherRespone
+                          @Query("lon") lon: Double) : WeatherResponse
 
 
     @GET("maps/api/place/nearbysearch/json?radius=1500&type=restaurant")

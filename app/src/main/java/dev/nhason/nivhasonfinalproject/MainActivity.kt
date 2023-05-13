@@ -41,6 +41,7 @@ class MainActivity: AppCompatActivity() {
     lateinit var placesViewModel: PlacesViewModel
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
@@ -48,7 +49,6 @@ class MainActivity: AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         terms()
         navigationController = findNavController(R.id.nav_host_fragment_activity_main)
         NavigationUI.setupWithNavController(binding.navView,navigationController,false)

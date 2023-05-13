@@ -1,9 +1,6 @@
 package dev.nhason.nivhasonfinalproject.data.models.weatherModel
 
 
-import com.google.gson.annotations.SerializedName
-import dev.nhason.nivhasonfinalproject.data.models.placesModel.ApiKey
-
 data class Weather(
     val description: String,
     val icon: String?,

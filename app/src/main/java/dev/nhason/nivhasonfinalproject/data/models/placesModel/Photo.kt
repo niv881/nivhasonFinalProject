@@ -1,14 +1,12 @@
 package dev.nhason.nivhasonfinalproject.data.models.placesModel
 
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import dev.nhason.nivhasonfinalproject.BuildConfig
-import kotlinx.parcelize.Parcelize
+import dev.nhason.nivhasonfinalproject.ui.queryValue
 
-const val ApiKey = BuildConfig.KEY_GOOGLE
+const val ApiKey = queryValue
 
-@Parcelize
+
 data class Photo(
     val height: Int,
     @SerializedName("html_attributions")
@@ -16,7 +14,7 @@ data class Photo(
     @SerializedName("photo_reference")
     val photoReference: String?,
     val width: Int
-) : Parcelable {
+){
     val photoReferenceUrl get() = if(photoReference != null){
         "https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photo_reference=$photoReference&key=$ApiKey"
     }else{

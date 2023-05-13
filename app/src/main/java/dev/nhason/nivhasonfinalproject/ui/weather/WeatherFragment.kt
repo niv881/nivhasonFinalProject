@@ -32,7 +32,7 @@ class WeatherFragment : Fragment() {
             Picasso.get().load(it.weather[0].iconUrl).into(binding.weatherImage)
             binding.temp.text = "${it.main.temp.toInt()}$c"
             binding.feelsLikeDetails.text = it.main.feelsLike.toInt().toString()
-            binding.description.text = it.weather[0].description
+            binding.description.text = it.weather?.get(0)?.description ?: "no descrption"
         }
 
         return root

@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.kapt'
-    id 'kotlin-parcelize'
 }
 
 android {
@@ -22,8 +21,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String","KEY_GOOGLE",props["KEY_GOOGLE"])
-        buildConfigField("String","KEY_OPEN_WEATHER",props["KEY_OPEN_WEATHER"])
         buildConfigField("String","BASE_URL_GOOGLE",props["BASE_URL_GOOGLE"])
         buildConfigField("String","BASE_URL_OPEN_WEATHER",props["BASE_URL_OPEN_WEATHER"])
         buildConfigField("String","QUERY_PROPS_GOOGLE",props["QUERY_PROPS_GOOGLE"])
@@ -92,3 +89,4 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+

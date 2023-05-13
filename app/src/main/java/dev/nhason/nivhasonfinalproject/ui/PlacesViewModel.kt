@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 const val baseURL = BuildConfig.BASE_URL_GOOGLE
 const val queryParam = BuildConfig.QUERY_PROPS_GOOGLE
-const val queryValue = "AIza...."
+const val queryValue = "AIzaSyC4JJI7_L0JP0k6__K4s097gczDZRwjtSI"
 
 
 class PlacesViewModel  : ViewModel() {

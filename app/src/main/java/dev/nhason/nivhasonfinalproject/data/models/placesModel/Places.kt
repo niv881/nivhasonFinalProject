@@ -1,10 +1,8 @@
 package dev.nhason.nivhasonfinalproject.data.models.placesModel
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
+
 data class Places(
     @SerializedName("business_status")
     val businessStatus: String,
@@ -31,7 +29,7 @@ data class Places(
     @SerializedName("user_ratings_total")
     val userRatingsTotal: Int,
     val vicinity: String
-) : Parcelable {
+){
     val photo
         get() = if (photos != null){
             photos[0].photoReferenceUrl
