@@ -12,8 +12,8 @@ First you need to get two Api key:
 1) from google API ->  [Google API](https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en)
 2) from open weather API -> [Open Weather](https://openweathermap.org/api)
 
-Second you need to add Google API key And Open Weather APi in apikeys.properties.
-QUERY_KEY_GOOGLE = "AIza..."
+Second you need to add Google API key And Open Weather APi in apikeys.properties.\
+QUERY_KEY_GOOGLE = "AIza..."\
 QUERY_KEY_OPEN_WEATHER = "..."
 
 Than just rebuild the project and run it.
