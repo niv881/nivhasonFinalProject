@@ -25,6 +25,10 @@ Than just rebuild the project and run it.
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) for asynchronous.
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel?gclsrc=ds&gclsrc=ds&gclid=COSn4ZOYx_ICFRYUjgodNmoF8w)
 - MVVM Architecture
+- [Recyclerview](https://developer.android.com/develop/ui/views/layout/recyclerview)
 - [Retrofit](https://square.github.io/retrofit/) Networking library
+
+
+
 
 
