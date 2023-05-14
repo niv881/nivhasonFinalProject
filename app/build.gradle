@@ -25,6 +25,8 @@ android {
         buildConfigField("String","BASE_URL_OPEN_WEATHER",props["BASE_URL_OPEN_WEATHER"])
         buildConfigField("String","QUERY_PROPS_GOOGLE",props["QUERY_PROPS_GOOGLE"])
         buildConfigField("String","QUERY_PROPS_WEATHER",props["QUERY_PROPS_WEATHER"])
+        buildConfigField("String","QUERY_KEY_GOOGLE",props["QUERY_KEY_GOOGLE"])
+        buildConfigField("String","QUERY_KEY_OPEN_WEATHER",props["QUERY_KEY_OPEN_WEATHER"])
 
     }
 
