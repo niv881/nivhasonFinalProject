@@ -28,6 +28,21 @@ Than just rebuild the project and run it.
 - [Recyclerview](https://developer.android.com/develop/ui/views/layout/recyclerview)
 - [Retrofit](https://square.github.io/retrofit/) Networking library
 
+## Some Video from the project
+
+https://github.com/niv881/nivhasonFinalProject/assets/111022872/806cb85a-26da-404e-99a0-df3fcf90e3e3
+
+https://github.com/niv881/nivhasonFinalProject/assets/111022872/f2ecd84f-b7e9-4a1c-9372-8411d61e943f
+
+https://github.com/niv881/nivhasonFinalProject/assets/111022872/3e85b0ab-c8cb-4a9c-af99-0efff3002bad
+
+https://github.com/niv881/nivhasonFinalProject/assets/111022872/bf827f2a-67d0-4650-958c-2b047ddea213
+
+
+
+
+
+
 
 
 
