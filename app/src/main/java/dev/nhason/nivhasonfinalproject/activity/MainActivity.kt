@@ -1,10 +1,13 @@
-package dev.nhason.nivhasonfinalproject
+package dev.nhason.nivhasonfinalproject.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.location.LocationManager
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -21,10 +24,12 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
+import dev.nhason.nivhasonfinalproject.R
 import dev.nhason.nivhasonfinalproject.data.models.isFirstTime
 import dev.nhason.nivhasonfinalproject.data.models.saveFirstTime
 import dev.nhason.nivhasonfinalproject.databinding.ActivityMainBinding
 import dev.nhason.nivhasonfinalproject.databinding.TermsDialogBinding
+import dev.nhason.nivhasonfinalproject.services.NetworkBroadcast
 import dev.nhason.nivhasonfinalproject.ui.PlacesViewModel
 import dev.nhason.nivhasonfinalproject.ui.weather.WeatherViewModel
 import java.util.*
@@ -38,7 +43,8 @@ class MainActivity: AppCompatActivity() {
     private val cts = CancellationTokenSource()
     private val permissionId = 2
     lateinit var weatherViewModel: WeatherViewModel
-    lateinit var placesViewModel: PlacesViewModel
+    private lateinit var placesViewModel: PlacesViewModel
+    private lateinit var broadcastReceiver: BroadcastReceiver
 
 
 
@@ -53,6 +59,10 @@ class MainActivity: AppCompatActivity() {
         navigationController = findNavController(R.id.nav_host_fragment_activity_main)
         NavigationUI.setupWithNavController(binding.navView,navigationController,false)
         client = LocationServices.getFusedLocationProviderClient(this)
+
+        broadcastReceiver = NetworkBroadcast()
+        registerReceiver(broadcastReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -157,6 +167,11 @@ class MainActivity: AppCompatActivity() {
                 getLocation()
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(broadcastReceiver)
     }
 
 }
