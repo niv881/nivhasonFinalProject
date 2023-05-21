@@ -2,6 +2,7 @@ package dev.nhason.nivhasonfinalproject.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
@@ -11,6 +12,7 @@ import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +30,7 @@ import dev.nhason.nivhasonfinalproject.R
 import dev.nhason.nivhasonfinalproject.data.models.isFirstTime
 import dev.nhason.nivhasonfinalproject.data.models.saveFirstTime
 import dev.nhason.nivhasonfinalproject.databinding.ActivityMainBinding
+import dev.nhason.nivhasonfinalproject.databinding.NoInternetConnectionLayoutBinding
 import dev.nhason.nivhasonfinalproject.databinding.TermsDialogBinding
 import dev.nhason.nivhasonfinalproject.services.NetworkBroadcast
 import dev.nhason.nivhasonfinalproject.ui.PlacesViewModel
@@ -50,29 +53,38 @@ class MainActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         weatherViewModel = ViewModelProvider(this)[WeatherViewModel::class.java]
         placesViewModel = ViewModelProvider(this)[PlacesViewModel::class.java]
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        terms()
+
         navigationController = findNavController(R.id.nav_host_fragment_activity_main)
+        //for step back from details to another fragment
         NavigationUI.setupWithNavController(binding.navView,navigationController,false)
+        // for connection lost
+            broadcastReceiver = NetworkBroadcast()
+            registerReceiver(
+                broadcastReceiver,
+                IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+            )
+
+        // terms for the first time in the app
+        terms()
         client = LocationServices.getFusedLocationProviderClient(this)
+    }
 
-        broadcastReceiver = NetworkBroadcast()
-        registerReceiver(broadcastReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+    override fun onStart() {
+        super.onStart()
 
+        // get location to the view models
+        getLocation()
     }
 
     override fun onSupportNavigateUp(): Boolean {
         navigationController.navigateUp()
         return super.onSupportNavigateUp()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        getLocation()
     }
 
     private fun terms(){
@@ -82,6 +94,7 @@ class MainActivity: AppCompatActivity() {
         }
     }
 
+    //terms dialog
     private fun showTerms(){
         val dialogBinding = TermsDialogBinding.inflate(layoutInflater,binding.root,false)
 
@@ -107,6 +120,7 @@ class MainActivity: AppCompatActivity() {
                 val request = CurrentLocationRequest.Builder()
                     .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
                     .build()
+                //get the current location and pass to view models
                 client.getCurrentLocation(request, cts.token).addOnSuccessListener {
                     val latLng = "${it.latitude},${it.longitude}"
                     weatherViewModel.getWeather(it.latitude, it.longitude)

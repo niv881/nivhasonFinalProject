@@ -27,10 +27,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".services.NetworkBroadcast"
+
+        <receiver
+            android:name=".services.NetworkBroadcast"
             android:exported="true">
             <intent-filter>
-                <action android:name = "android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
 

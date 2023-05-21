@@ -28,12 +28,12 @@ class NetworkBroadcast : BroadcastReceiver() {
         }
     }
 
-    private fun isNetworkConnected(context: Context) : Boolean {
+     fun isNetworkConnected(context: Context) : Boolean {
         return try {
             val connectivityManager : ConnectivityManager =
                 context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val networkInfo : NetworkInfo = connectivityManager.activeNetworkInfo!!
-            networkInfo.isConnected;
+            return networkInfo != null && networkInfo.isConnected
 
         }catch (e : Exception){
             e.printStackTrace()

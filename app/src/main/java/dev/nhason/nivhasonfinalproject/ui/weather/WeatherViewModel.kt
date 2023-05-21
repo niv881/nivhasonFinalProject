@@ -18,13 +18,13 @@ class WeatherViewModel(application : Application) : AndroidViewModel(application
 
 
 
-    private val _locationLiveData = MutableLiveData<WeatherResponse>()
-    val locationLiveData: LiveData<WeatherResponse> = _locationLiveData
+    private val _weatherLiveData = MutableLiveData<WeatherResponse>()
+    val weatherLiveData: LiveData<WeatherResponse> = _weatherLiveData
 
         fun getWeather(lat : Double, lng: Double) {
             viewModelScope.launch {
                 val result = Services.create(baseURL, queryParam, queryValue).getWeather(lat,lng)
-                _locationLiveData.postValue(result)
+                _weatherLiveData.postValue(result)
             }
 
         }

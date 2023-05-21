@@ -27,12 +27,12 @@ class WeatherFragment : Fragment() {
 
         _binding = FragmentWeatherBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        weatherViewModel.locationLiveData.observe(viewLifecycleOwner){
+        weatherViewModel.weatherLiveData.observe(viewLifecycleOwner){
             binding.titleCity.text = it.name
             Picasso.get().load(it.weather[0].iconUrl).into(binding.weatherImage)
             binding.temp.text = "${it.main.temp.toInt()}$c"
             binding.feelsLikeDetails.text = it.main.feelsLike.toInt().toString()
-            binding.description.text = it.weather?.get(0)?.description ?: "no descrption"
+            binding.description.text = it.weather[0].description
         }
 
         return root
